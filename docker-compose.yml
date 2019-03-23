@@ -1,1 +1,53 @@
 # Orchestrate the running of multiple containers
+version: '3'
+
+services:
+  web:
+    build: ./web
+    container_name: shop-web
+    environment:
+      - PORT=3000
+    ports:
+      - '3000:3000'
+
+  desktops:
+    build: ./desktops
+    container_name: shop-desktops
+    environment:
+      - PORT=3000
+      - DB_STR=mongodb://mongo:27017/desktops
+    ports:
+      - 3001:3000
+    links:
+      - mongo
+
+  laptops:
+    build: ./laptops
+    container_name: shop-laptops
+    environment:
+      - PORT=3000
+      - DB_STR=mongodb://mongo:27017/laptops
+    ports:
+      - 3002:3000
+    links:
+      - mongo
+
+  mongo:
+    image: mongo:4
+    container_name: shop-mongo
+    ports:
+      - 27017:27017
+
+  nginx:
+    image: nginx:1.15
+    container_name: shop-nginx
+    ports:
+      - '80:80'
+    volumes:
+      - ./web/public:/srv/static
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - mongo
+      - web
+      - desktops
+      - laptops

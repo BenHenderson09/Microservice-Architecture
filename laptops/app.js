@@ -7,6 +7,7 @@ const app = express();
 // Config
 const port = process.env.PORT || 3000;
 const db_string = process.env.DB_STR;
+app.set('view engine', 'ejs');
 
 // Mongo
 mongoose.connect(db_string, {useNewUrlParser: true})

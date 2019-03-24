@@ -12,5 +12,9 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.16.4"
+  },
+  "repository":{
+    "type": "git",
+    "url": "git://github.com/BenHenderson09/Microservice_example.git"
   }
 }

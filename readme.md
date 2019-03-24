@@ -3,7 +3,7 @@ This project was created to simply show how a microservice architecture is const
 to manage a group of containers.
 
 ## Project details
-- Containers build with Docker
+- Containers built with Docker
 - Nginx reverse proxy used to serve static content and assign routes
 - NodeJS containers run REST APIs and render EJS files
 - MongoDB used as database (For persistent storage, mount a volume your filesystem)
@@ -16,19 +16,19 @@ will pull all the required images, start the containers and establish a Docker n
 ## Routes
 |URI|Method|Operation|
 |---|------|---------|
-|/|GET|Shows index page of project|
-|/desktops|GET|Shows index page of desktops category|
-|/api/desktops|GET|Sends JSON of all desktops|
-|/api/desktops/:id|GET|Send JSON of specified desktop|
-|/api/desktops|POST|Creates new desktop listing. Requires `name` and `price` in post body|
-|/api/desktops/:id|PUT|Updates specified desktop listing. Requires `name` or `price` in post body|
-|/laptops|GET|Shows index page of laptops category|
-|/api/laptops|GET|Sends JSON of all laptops|
-|/api/laptops/:id|GET|Send JSON of specified laptop|
-|/api/laptops|POST|Creates new laptop listing. Requires `name` and `price` in post body|
-|/api/laptops/:id|PUT|Updates specified laptop listing. Requires `name` or `price` in post body|
-|/api/desktops/:id|DELETE|Deletes specified desktop listing|
-|/api/laptops/:id|DELETE|Deletes specified laptop listing|
+|/|GET|Shows index page of project.|
+|/desktops|GET|Shows index page of desktops category.|
+|/api/desktops|GET|Sends JSON of all desktops.|
+|/api/desktops/:id|GET|Send JSON of specified desktop.|
+|/api/desktops|POST|Creates new desktop listing. Requires `name` and `price` in post body.|
+|/api/desktops/:id|PUT|Updates specified desktop listing. Requires `name` or `price` in post body.|
+|/laptops|GET|Shows index page of laptops category.|
+|/api/laptops|GET|Sends JSON of all laptops.|
+|/api/laptops/:id|GET|Send JSON of specified laptop.|
+|/api/laptops|POST|Creates new laptop listing. Requires `name` and `price` in post body.|
+|/api/laptops/:id|PUT|Updates specified laptop listing. Requires `name` or `price` in post body.|
+|/api/desktops/:id|DELETE|Deletes specified desktop listing.|
+|/api/laptops/:id|DELETE|Deletes specified laptop listing.|
 
 ## Afterword
 It is clearly visible that this relatively simple project has been made considerably more complex with a microservice

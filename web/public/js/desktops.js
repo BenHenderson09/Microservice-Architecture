@@ -12,8 +12,8 @@ function remove(id){
 $("#create-form").submit(function(e) {
     e.preventDefault();
 
-    var form = $(this);
-    var url = form.attr('action');
+    let form = $(this);
+    let url = form.attr('action');
 
     $.ajax({
            type: "POST",
@@ -30,9 +30,9 @@ $("#create-form").submit(function(e) {
 $("#update-form").submit(function(e) {
     e.preventDefault();
 
-    var form = $(this);
-    var formData = form.serialize();
-    var url = form.attr('action') + '/' + formData.split('&')[0].split('=')[1];
+    let form = $(this);
+    let formData = form.serialize();
+    let url = form.attr('action') + '/' + formData.split('&')[0].split('=')[1];
 
     $.ajax({
            type: "PUT",

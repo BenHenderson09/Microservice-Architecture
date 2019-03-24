@@ -1,5 +1,94 @@
 <% include includes/header %>
 
-<h1> Desktops Index <h1>
+<div class="heading">
+    <h1> Desktops <h1>
+    <hr/>
+</div>
+
+<div class="card top-buffer">
+    <div class="card-header">
+        <h3> Add Item </h3>
+    </div>
+
+    <div class="card-body">
+        <form method="POST" action="/api/desktops" id="create-form">
+            <div class="form-group">
+                <label for="desktop-name">Desktop Name</label>
+                <input type="text" class="form-control" id="desktop-name" name="name" placeholder="Enter listing name...">
+            </div>
+                <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="0" min="0" max="20000">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="card top-buffer">
+    <div class="card-header">
+        <h3> Update Item </h3>
+    </div>
+
+    <div class="card-body">
+        <form action="/api/desktops" id="update-form">
+            <div class="form-group">
+                <label for="item_id">Item ID</label>
+                <input type="text" class="form-control" id="item_id" name="item_id" placeholder="Enter item id...">
+            </div>
+            <div class="form-group">
+                <label for="desktop-name">Desktop Name</label>
+                <input type="text" class="form-control" id="desktop-name" name="name" placeholder="Enter listing name...">
+            </div>
+                <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="0" min="0" max="20000">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="items top-buffer">
+    <% if (desktops.length > 0) {%>
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Created</th>
+                <th scope="col">ID</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% desktops.forEach(desktop => {%>
+                    <tr>
+                        <td><%= desktop.name %></td>
+                        <td><%= desktop.price %></td>
+                        <td><%= desktop.created %></td>
+                        <td><%= desktop._id %></td>
+
+                        <!-- Uses static JS script -->
+                        <td> <button onclick="return remove('<%= desktop._id %>');"
+                         class="btn btn-danger"> Delete </button> </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        
+    <% } else {%>
+        <div class="jumbotron text-center top-buffer">
+            <h1 class="display-3"> No desktops found </h1>
+            <h4> Try adding some </h4>
+        </div>
+    <%}%>
+</div>
+
+<!-- JavaScript -->
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  
+<script src="/js/desktops.js"></script>
 
 <% include includes/footer %>

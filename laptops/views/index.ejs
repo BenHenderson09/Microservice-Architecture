@@ -1,5 +1,94 @@
 <% include includes/header %>
 
-<h1> Laptops Index <h1>
+<div class="heading">
+    <h1> Laptops <h1>
+    <hr/>
+</div>
+
+<div class="card top-buffer">
+    <div class="card-header">
+        <h3> Add Item </h3>
+    </div>
+
+    <div class="card-body">
+        <form method="POST" action="/api/laptops" id="create-form">
+            <div class="form-group">
+                <label for="laptop-name">Laptop Name</label>
+                <input type="text" class="form-control" id="laptop-name" name="name" placeholder="Enter listing name...">
+            </div>
+                <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="0" min="0" max="20000">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="card top-buffer">
+    <div class="card-header">
+        <h3> Update Item </h3>
+    </div>
+
+    <div class="card-body">
+        <form action="/api/laptops" id="update-form">
+            <div class="form-group">
+                <label for="item_id">Item ID</label>
+                <input type="text" class="form-control" id="item_id" name="item_id" placeholder="Enter item id...">
+            </div>
+            <div class="form-group">
+                <label for="laptop-name">Laptop Name</label>
+                <input type="text" class="form-control" id="laptop-name" name="name" placeholder="Enter listing name...">
+            </div>
+                <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="0" min="0" max="20000">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="items top-buffer">
+    <% if (laptops.length > 0) {%>
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Created</th>
+                <th scope="col">ID</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% laptops.forEach(laptop => {%>
+                    <tr>
+                        <td><%= laptop.name %></td>
+                        <td><%= laptop.price %></td>
+                        <td><%= laptop.created %></td>
+                        <td><%= laptop._id %></td>
+
+                        <!-- Uses static JS script -->
+                        <td> <button onclick="return remove('<%= laptop._id %>');"
+                         class="btn btn-danger"> Delete </button> </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        
+    <% } else {%>
+        <div class="jumbotron text-center top-buffer">
+            <h1 class="display-3"> No laptops found </h1>
+            <h4> Try adding some </h4>
+        </div>
+    <%}%>
+</div>
+
+<!-- JavaScript -->
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  
+<script src="/js/laptops.js"></script>
 
 <% include includes/footer %>

@@ -5,11 +5,12 @@ const express = require('express');
 const router = express.Router();
 
 router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended: false}));
 
-function validateId(id){
+function validateId(id, res){
     let validId = mongoose.Types.ObjectId.isValid(id);
 
-    if (!validId) return res.status(400).json({success: false, message: 'Invalid item id provided'});
+    if (!validId) return Promise.reject(res.status(400).json({success: false, message: 'Invalid item id provided'}));
 
     return Promise.resolve();
 }
@@ -25,7 +26,7 @@ router.get('/', (req, res) => {
 
 // Gets a single item by the id
 router.get('/:id', (req, res) => {
-    validateId(req.params.id)
+    validateId(req.params.id, res)
         .then(() => {
             return Desktop.findById(req.params.id);
         })
@@ -73,7 +74,7 @@ router.put('/:id', (req, res) => {
         return res.status(400).json({success: false, msg: 'Required parameters are missing'});
     }
 
-    validateId(req.params.id)
+    validateId(req.params.id, res)
         .then(() => {
             return Desktop.findById(req.params.id);
         })
@@ -93,7 +94,7 @@ router.put('/:id', (req, res) => {
 
 // Deletes an item by id
 router.delete('/:id', (req, res) => {
-    validateId()
+    validateId(req.params.id, res)
         .then(() => {
             return Desktop.findById(req.params.id);
         })

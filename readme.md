@@ -1,4 +1,4 @@
-# Computer Shop Microservice Example
+# Computer Shop Microservice Architecture
 This project was created to simply show how a microservice architecture is constructed and how `docker-compose` can be used
 to manage a group of containers.
 
